@@ -1,4 +1,4 @@
-﻿"""
+"""
 Root-CA backed key and certificate management for TrustVault.
 
 Private keys are generated as password-protected PKCS#12 bundles only. User
@@ -205,6 +205,11 @@ def generate_certificate(name: str, password: Optional[str] = None, validity_day
         )
         log_security_event("CERTIFICATE_GENERATED", user=name, description="CA-signed certificate generated",
                            key_algorithm=key_label, cert_path=cert_path, pkcs12_path=p12_path)
+        try:
+            from alerts.alert_manager import AlertManager
+            AlertManager.certificate_generated(name, cert_path)
+        except Exception as e:
+            print(f"AlertManager error: {e}")
         return True, (
             f"Certificate generated for '{name}'.\n"
             f"Key algorithm   : {key_label}\n"
@@ -239,6 +244,11 @@ def revoke_certificate(name: str) -> Tuple[bool, str]:
     _save_revoked(revoked)
     log_security_event("CERTIFICATE_REVOKED", user=name, description="Certificate revoked",
                        severity="WARNING", serial_number=serial)
+    try:
+        from alerts.alert_manager import AlertManager
+        AlertManager.certificate_revoked(name)
+    except Exception as e:
+        print(f"AlertManager error: {e}")
     return True, f"Certificate revoked for '{name}'."
 
 
@@ -371,6 +381,11 @@ def authenticate_with_certificate(username: str, password: str, pkcs12_path: str
     try:
         if not user_store.verify_password(username, password):
             log_security_event("AUTH_FAILED", user=username, description="Invalid account password", severity="WARNING")
+            try:
+                from alerts.alert_manager import AlertManager
+                AlertManager.login_failed(username, "Invalid account password")
+            except Exception as e:
+                print(f"AlertManager error: {e}")
             return False, "Invalid username or password."
 
         keystore_password = keystore_password or password
@@ -385,20 +400,40 @@ def authenticate_with_certificate(username: str, password: str, pkcs12_path: str
         if cn.lower() != username.lower():
             log_security_event("AUTH_FAILED", user=username, description="Certificate CN mismatch",
                                severity="CRITICAL", certificate_cn=cn)
+            try:
+                from alerts.alert_manager import AlertManager
+                AlertManager.login_failed(username, "Certificate CN mismatch")
+            except Exception as e:
+                print(f"AlertManager error: {e}")
             return False, "Certificate does not belong to this user."
 
         ok, message = validate_certificate(cert)
         if not ok:
             log_security_event("AUTH_FAILED", user=username, description=message, severity="CRITICAL")
+            try:
+                from alerts.alert_manager import AlertManager
+                AlertManager.login_failed(username, message)
+            except Exception as e:
+                print(f"AlertManager error: {e}")
             return False, message
 
         challenge = os.urandom(32)
         signature = _sign_challenge(private_key, challenge)
         _verify_challenge(cert.public_key(), challenge, signature)
         log_security_event("LOGIN_SUCCESS", user=username, description="Certificate authentication succeeded")
+        try:
+            from alerts.alert_manager import AlertManager
+            AlertManager.login_successful(username)
+        except Exception as e:
+            print(f"AlertManager error: {e}")
         return True, "Certificate authentication succeeded."
     except Exception as exc:
         log_security_event("AUTH_FAILED", user=username, description=str(exc), severity="WARNING")
+        try:
+            from alerts.alert_manager import AlertManager
+            AlertManager.login_failed(username, str(exc))
+        except Exception as e:
+            print(f"AlertManager error: {e}")
         return False, f"Certificate authentication failed: {exc}"
 
 

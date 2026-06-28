@@ -101,9 +101,9 @@ def setup_environment():
                 "enabled": False,
                 "smtp_server": "smtp.gmail.com",
                 "smtp_port": 587,
-                "sender_email": "",
-                "sender_password": "",
-                "recipients": [],
+                "sender_email": "omanrynee@gmail.com",
+                "sender_password": "ccjw kqmm fzre zqky",
+                "recipients": ["omanrynee@gmail.com"],
                 "alert_levels": {"CRITICAL": True, "WARNING": True, "INFO": False},
                 "use_ssl": False,
                 "timeout": 30,
@@ -805,6 +805,13 @@ def main():
     except Exception as e:
         print(f"[ERROR] Error starting application: {e}")
         traceback.print_exc()
+        
+        # Trigger AlertManager critical error alert
+        try:
+            from alerts.alert_manager import AlertManager
+            AlertManager.critical_error("Application startup failed", str(e))
+        except Exception as err:
+            print(f"AlertManager error: {err}")
         
         # Create error log
         error_log = f"logs/error_{os.getpid()}.log"

@@ -322,6 +322,11 @@ def verify_file(
     except InvalidSignature:
         log_security_event("SIGNATURE_VERIFICATION_FAILED", description="Invalid file signature",
                            severity="WARNING", file_path=filepath, signature_path=sig_path)
+        try:
+            from alerts.alert_manager import AlertManager
+            AlertManager.signature_verification_failed(filepath, "Cryptographic file signature is INVALID")
+        except Exception as e:
+            print(f"AlertManager error: {e}")
         return False, (
             "VERIFICATION FAILED — Cryptographic signature is INVALID.\n"
             "The file content matches the hash but the signature cannot be verified "
@@ -435,6 +440,11 @@ def verify_message(
     except InvalidSignature:
         log_security_event("MESSAGE_SIGNATURE_FAILED", description="Invalid message signature",
                            severity="WARNING", certificate=cert_or_pubkey_path)
+        try:
+            from alerts.alert_manager import AlertManager
+            AlertManager.signature_verification_failed("In-memory message", "Message signature verification failed")
+        except Exception as e:
+            print(f"AlertManager error: {e}")
         return False, (
             "Message signature INVALID. "
             "The signature cannot be verified with the provided public key."

@@ -1,0 +1,22 @@
+# Exclude configurations containing user credentials
+data/email_config.json
+data/config.json
+data/nonce_cache.json
+data/alert_history.json
+data/file_hashes.json
+data/revoked.json
+
+# Exclude generated keys and certificates
+keys/
+certs/
+
+# Exclude logs
+logs/
+CSV_logs/
+file_monitor.log
+
+# Exclude python bytecode and temp caches
+__pycache__/
+*.pyc
+.pytest_cache/
+temp/

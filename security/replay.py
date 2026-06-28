@@ -66,6 +66,11 @@ def check_and_store_nonce(nonce: str, timestamp: str, context: str,
     age = now - message_time
     if age > timedelta(seconds=max_age_seconds):
         log_security_event("REPLAY_REJECTED", description=f"Expired timestamp for {context}", severity="WARNING")
+        try:
+            from alerts.alert_manager import AlertManager
+            AlertManager.replay_attack_blocked(context, f"Expired timestamp age: {age.total_seconds():.1f}s")
+        except Exception as e:
+            print(f"AlertManager error: {e}")
         return False, "Replay timestamp has expired."
     if message_time - now > timedelta(seconds=30):
         log_security_event("REPLAY_REJECTED", description=f"Future timestamp for {context}", severity="WARNING")
@@ -83,6 +88,11 @@ def check_and_store_nonce(nonce: str, timestamp: str, context: str,
         log_security_event("REPLAY_REJECTED", description=f"Reused nonce for {context}", severity="CRITICAL",
                            nonce=nonce)
         _save_cache(cache)
+        try:
+            from alerts.alert_manager import AlertManager
+            AlertManager.replay_attack_blocked(context, "Reused cryptographic nonce detected")
+        except Exception as e:
+            print(f"AlertManager error: {e}")
         return False, "Replay detected: nonce has already been used."
 
     cache[nonce] = message_time.isoformat()

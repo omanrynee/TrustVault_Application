@@ -290,6 +290,11 @@ Copyright © 2026 Oman Ryne. All Rights Reserved.
     def update_setting(self, key, value):
         """Update a setting and save configuration"""
         self.app.config[key] = value
+        if key == "email_alerts" and hasattr(self.app, 'email_system') and self.app.email_system:
+            if value:
+                self.app.email_system.enable()
+            else:
+                self.app.email_system.disable()
         if self.app.config.get("auto_save", True):
             save_config(self.app.config)
     

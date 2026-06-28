@@ -53,6 +53,10 @@ class FIMApp:
         # Initialize components
         self._initialize_components()
         
+        # Register app with AlertManager
+        from alerts.alert_manager import AlertManager
+        AlertManager.register_app(self)
+        
         # Combined log storage
         self.combined_logs = []
         
@@ -157,7 +161,14 @@ class FIMApp:
                 self.ransomware_detector = None
             
             self.web_dashboard = None
-            self.email_system = None
+            try:
+                from communication.email_system import EmailAlertSystem
+                self.email_system = EmailAlertSystem()
+                self.email_system.enabled = self.config.get("email_alerts", False)
+                print("[OK] Email system initialized")
+            except Exception as e:
+                print(f"[WARN] Email system error: {e}")
+                self.email_system = None
             
             self.certificate_manager = None
             try:
@@ -180,6 +191,20 @@ class FIMApp:
                        details: Dict = None, file_path: str = None, channel: str = None):
         """Callback function for all alerts from detectors"""
         try:
+            # Route to AlertManager
+            from alerts.alert_manager import AlertManager
+            if alert_type == 'TAMPER':
+                orig_hash = details.get("original_hash", "N/A") if details else "N/A"
+                curr_hash = details.get("current_hash", "N/A") if details else "N/A"
+                AlertManager.hash_mismatch(file_path or "Unknown file", orig_hash, curr_hash)
+            elif alert_type == 'RANSOMWARE':
+                AlertManager.ransomware_detected(file_path or "Unknown file", details.get("pattern", "N/A") if details else "N/A")
+            elif alert_type == 'ANOMALY':
+                AlertManager.anomaly_detected(file_path or "System", str(details) if details else message)
+            else:
+                AlertManager.show_warning(title, message)
+                AlertManager.send_email_alert(title, message, level="WARNING")
+
             if hasattr(self, 'alert_notifier') and self.alert_notifier:
                 return self.alert_notifier.notify(
                     alert_type=alert_type,
@@ -251,6 +276,7 @@ class FIMApp:
             from gui.tabs.users_tab import UsersTab
             from gui.tabs.settings_tab import SettingsTab
             from gui.tabs.crypto_ops_tab import CryptoOpsTab
+            from gui.tabs.email_alerts_tab import EmailAlertsTab
             
             self.home_tab = HomeTab(self.notebook, self)
             self.monitor_tab = MonitorTab(self.notebook, self)
@@ -261,6 +287,7 @@ class FIMApp:
             self.logs_tab = LogsTab(self.notebook, self)
             self.users_tab = UsersTab(self.notebook, self)
             self.crypto_ops_tab = CryptoOpsTab(self.notebook, self)
+            self.email_alerts_tab = EmailAlertsTab(self.notebook, self)
             self.settings_tab = SettingsTab(self.notebook, self)
             
             self.monitor_tab = self.monitor_tab
@@ -282,6 +309,7 @@ class FIMApp:
         self.notebook.add(self.logs_tab.frame, text="📄 Logs")
         self.notebook.add(self.users_tab.frame, text="👤 Users")
         self.notebook.add(self.crypto_ops_tab.frame, text="🔏 Crypto Ops")
+        self.notebook.add(self.email_alerts_tab.frame, text="📧 Email Alerts")
         self.notebook.add(self.settings_tab.frame, text="⚙️ Settings")
         
         self.status_bar = tk.Label(self.root, text="Ready", 

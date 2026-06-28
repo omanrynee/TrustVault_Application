@@ -204,6 +204,19 @@ class FastFileHandler(FileSystemEventHandler):
                         }
                         self.app.web_dashboard.add_event(ransom_event)
                     self.send_ransomware_alert(path)
+
+            # Trigger AlertManager for file events
+            from alerts.alert_manager import AlertManager
+            if is_ransomware:
+                AlertManager.ransomware_detected(path, "Suspicious ransomware extension/pattern detected")
+            elif event_type == 'CREATED':
+                AlertManager.file_created(path)
+            elif event_type == 'MODIFIED':
+                AlertManager.file_modified(path)
+            elif event_type == 'DELETED':
+                AlertManager.file_deleted(path)
+            elif event_type == 'MOVED':
+                AlertManager.file_renamed(path, dest_path)
             
             # Format log message
             if dest_path:
@@ -543,6 +556,9 @@ class MonitorTab:
             self.app.monitoring = True
             self.app.monitor = self
             
+            from alerts.alert_manager import AlertManager
+            AlertManager.monitoring_started(path)
+            
             self.monitor_button.config(text="⏹️ Stop Monitoring", bg="#e74c3c")
             self.status_label.config(text="● ACTIVE", fg="#27ae60")
             self.status_text.config(text=f"Monitoring: {os.path.basename(path)}")
@@ -581,10 +597,13 @@ class MonitorTab:
         if not self.monitoring:
             return
         try:
+            path_stopped = self.monitored_path or "Folder"
             if self.observer:
                 self.observer.stop()
                 self.observer.join(timeout=2)
             self.monitoring = False
+            from alerts.alert_manager import AlertManager
+            AlertManager.monitoring_stopped(path_stopped)
             self.monitored_path = None
             self.app.monitoring = False
             self.app.monitor = None

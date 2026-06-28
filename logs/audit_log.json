@@ -702,5 +702,104 @@
     "description": "Certificate authentication succeeded",
     "severity": "INFO",
     "details": {}
+  },
+  {
+    "timestamp": "2026-06-28T13:49:51.110332+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-28T15:17:00.132588+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-28T15:20:46.916434+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-28T15:21:26.619761+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-28T15:22:01.187736+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-28T15:29:48.213006+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-28T15:39:34.322314+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-28T15:47:56.954182+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-28T15:57:35.374958+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-28T16:13:21.952247+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-28T16:55:00.074021+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
   }
 ]

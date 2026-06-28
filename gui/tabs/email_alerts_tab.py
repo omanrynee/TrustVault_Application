@@ -124,9 +124,23 @@ class EmailAlertsTab:
         
         self.recipients_entry = tk.Entry(recip_frame, width=40, 
                                         bg=t["entry_bg"], fg=t["fg"], font=("Segoe UI", 11))
-        recipients_str = ', '.join(self.app.email_system.config.get('recipients', []))
+        recipients_str = ', '.join(self.app.email_system.config.get('recipients', [])) if self.app.email_system else ""
         self.recipients_entry.insert(0, recipients_str)
         self.recipients_entry.pack(side="left", padx=10)
+        
+        # Enable Alerts Checkbutton
+        enable_frame = tk.Frame(form_frame, bg=t["bg"])
+        enable_frame.pack(fill="x", pady=10)
+        
+        tk.Label(enable_frame, text="Email Alerts Status:", fg=t["fg"], bg=t["bg"], 
+                font=("Segoe UI", 11), width=20, anchor="w").pack(side="left")
+        
+        self.config_enable_var = tk.BooleanVar(value=self.app.email_system.enabled if self.app.email_system else False)
+        self.config_enable_cb = tk.Checkbutton(
+            enable_frame, text="Enable Email Alerts System", variable=self.config_enable_var,
+            bg=t["bg"], fg=t["fg"], selectcolor=t["bg"], font=("Segoe UI", 11)
+        )
+        self.config_enable_cb.pack(side="left", padx=10)
         
         # Save button
         save_frame = tk.Frame(form_frame, bg=t["bg"])
@@ -308,6 +322,20 @@ class EmailAlertsTab:
             messagebox.showerror("Invalid Port", "Port must be a number!")
             return
         
+        # Warn if using Gmail and the password does not look like a 16-character App Password
+        is_gmail = "gmail" in sender_email.lower() or "gmail" in smtp_server.lower()
+        if is_gmail:
+            clean_pass = sender_pass.replace(" ", "").replace("-", "")
+            if len(clean_pass) != 16 or not clean_pass.isalpha():
+                response = messagebox.askyesno(
+                    "Gmail Security Warning",
+                    "The password you entered does not appear to be a standard 16-character Gmail App Password.\n\n"
+                    "Gmail requires a Google App Password (not your regular account password) to connect via SMTP.\n\n"
+                    "Do you want to save this password anyway?"
+                )
+                if not response:
+                    return
+
         # Save configuration
         test_mode = self.test_mode_var.get() if hasattr(self, 'test_mode_var') else False
         success, message = self.app.email_system.configure(
@@ -315,9 +343,15 @@ class EmailAlertsTab:
         )
         
         if success:
+            # Update enable status
+            enabled = self.config_enable_var.get()
+            self.app.email_system.enabled = enabled
+            self.app.email_system.config['enabled'] = enabled
+            self.app.email_system.save_config()
+            
             messagebox.showinfo("Success", message)
             self.update_email_status()
-            self.app.config["email_alerts"] = True
+            self.app.config["email_alerts"] = enabled
             from config.settings import save_config
             save_config(self.app.config)
             
@@ -364,81 +398,145 @@ class EmailAlertsTab:
         def run_test():
             success, message = self.app.email_system.test_connection()
             
-            test_window.destroy()
+            def update_ui():
+                try:
+                    test_window.destroy()
+                except Exception:
+                    pass
+                
+                self.email_test_results.configure(state="normal")
+                timestamp = datetime.now().strftime("%H:%M:%S")
+                
+                if success:
+                    self.email_test_results.insert("end", 
+                        f"[{timestamp}] ✅ Connection test successful!\n"
+                        f"    {message}\n\n")
+                    self.last_test_label.config(text=f"Last test: {timestamp} - Success")
+                else:
+                    self.email_test_results.insert("end", 
+                        f"[{timestamp}] ❌ Connection test failed!\n"
+                        f"    {message}\n\n")
+                    self.last_test_label.config(text=f"Last test: {timestamp} - Failed")
+                
+                self.email_test_results.see("end")
+                self.email_test_results.configure(state="disabled")
+                
+                # Show message box
+                if success:
+                    messagebox.showinfo("Connection Test", 
+                                      f"✅ Connection successful!\n\n{message}")
+                else:
+                    messagebox.showerror("Connection Test", 
+                                       f"❌ Connection failed!\n\n{message}")
             
-            # Display results
-            self.email_test_results.configure(state="normal")
-            timestamp = datetime.now().strftime("%H:%M:%S")
-            
-            if success:
-                self.email_test_results.insert("end", 
-                    f"[{timestamp}] ✅ Connection test successful!\n"
-                    f"    {message}\n\n")
-                self.last_test_label.config(text=f"Last test: {timestamp} - Success")
-            else:
-                self.email_test_results.insert("end", 
-                    f"[{timestamp}] ❌ Connection test failed!\n"
-                    f"    {message}\n\n")
-                self.last_test_label.config(text=f"Last test: {timestamp} - Failed")
-            
-            self.email_test_results.see("end")
-            self.email_test_results.configure(state="disabled")
-            
-            # Show message box
-            if success:
-                messagebox.showinfo("Connection Test", 
-                                  f"✅ Connection successful!\n\n{message}")
-            else:
-                messagebox.showerror("Connection Test", 
-                                   f"❌ Connection failed!\n\n{message}")
+            self.frame.after(0, update_ui)
         
         threading.Thread(target=run_test, daemon=True).start()
     
     def test_email_send(self):
-        """Send test email"""
+        """Send test email in background thread to avoid UI freezing"""
         if not self.app.email_system.enabled:
             messagebox.showwarning("Not Configured", 
                                  "Please save configuration first!")
             return
         
-        # Test connection first
-        success, message = self.app.email_system.test_connection()
-        if not success:
-            response = messagebox.askyesno("Connection Failed", 
-                                          f"Connection test failed:\n\n{message}\n\n"
-                                          "Try sending test email anyway?")
-            if not response:
-                return
+        # Show status window
+        status_win = tk.Toplevel(self.frame)
+        status_win.title("Sending Test Email...")
+        status_win.geometry("400x150")
+        status_win.configure(bg=constants.THEMES[self.app.config["theme"]]["bg"])
+        status_win.resizable(False, False)
+        status_win.grab_set()
         
-        # Send test email
-        success, message = self.app.email_system.send_test_email()
+        tk.Label(status_win, text="✉️ Dispatching Test Email...", 
+                font=("Segoe UI", 14, "bold"), 
+                fg=constants.THEMES[self.app.config["theme"]]["fg"],
+                bg=constants.THEMES[self.app.config["theme"]]["bg"]).pack(pady=30)
         
-        # Display results
-        self.email_test_results.configure(state="normal")
-        timestamp = datetime.now().strftime("%H:%M:%S")
-        
-        if success:
-            self.email_test_results.insert("end", 
-                f"[{timestamp}] ✅ Test email sent!\n"
-                f"    {message}\n\n")
+        status_label = tk.Label(status_win, text="Please wait while SMTP delivers the alert...",
+                               fg=constants.THEMES[self.app.config["theme"]]["fg"],
+                               bg=constants.THEMES[self.app.config["theme"]]["bg"])
+        status_label.pack(pady=10)
+        status_win.update()
+
+        def run_send():
+            # Test connection first
+            success_conn, message_conn = self.app.email_system.test_connection()
             
-            if self.app.email_system.config.get('test_mode', False):
-                messagebox.showinfo("Test Email", 
-                                  f"✅ Test email saved to file (Test Mode).\n\n"
-                                  f"Check the logs folder for the email file.")
-            else:
-                messagebox.showinfo("Test Email", 
-                                  f"✅ Test email sent successfully!\n\n"
-                                  f"Check your inbox (and spam folder).")
-        else:
-            self.email_test_results.insert("end", 
-                f"[{timestamp}] ❌ Failed to send test email!\n"
-                f"    {message}\n\n")
-            messagebox.showerror("Test Email", 
-                               f"❌ Failed to send test email:\n\n{message}")
+            def handle_conn_result():
+                try:
+                    status_win.destroy()
+                except Exception:
+                    pass
+                
+                if not success_conn:
+                    response = messagebox.askyesno("Connection Failed", 
+                                                  f"Connection test failed:\n\n{message_conn}\n\n"
+                                                  "Try sending test email anyway?")
+                    if response:
+                        self._execute_test_send()
+                else:
+                    self._execute_test_send()
+            
+            self.frame.after(0, handle_conn_result)
+
+        threading.Thread(target=run_send, daemon=True).start()
+ 
+    def _execute_test_send(self):
+        progress_win = tk.Toplevel(self.frame)
+        progress_win.title("Sending...")
+        progress_win.geometry("400x150")
+        progress_win.configure(bg=constants.THEMES[self.app.config["theme"]]["bg"])
+        progress_win.resizable(False, False)
+        progress_win.grab_set()
         
-        self.email_test_results.see("end")
-        self.email_test_results.configure(state="disabled")
+        tk.Label(progress_win, text="✉️ Sending...", 
+                font=("Segoe UI", 14, "bold"), 
+                fg=constants.THEMES[self.app.config["theme"]]["fg"],
+                bg=constants.THEMES[self.app.config["theme"]]["bg"]).pack(pady=30)
+        progress_win.update()
+
+        def run_actual_send():
+            success, message = self.app.email_system.send_test_email()
+            
+            def show_results():
+                try:
+                    progress_win.destroy()
+                except Exception:
+                    pass
+                
+                self.email_test_results.configure(state="normal")
+                timestamp = datetime.now().strftime("%H:%M:%S")
+                
+                from alerts.alert_manager import AlertManager
+                if success:
+                    self.email_test_results.insert("end", 
+                        f"[{timestamp}] ✅ Test email sent!\n"
+                        f"    {message}\n\n")
+                    AlertManager.show_success("Email Sent Successfully", "Test email sent successfully!")
+                    
+                    if self.app.email_system.config.get('test_mode', False):
+                        messagebox.showinfo("Test Email", 
+                                          f"✅ Test email saved to file (Test Mode).\n\n"
+                                          f"Check the logs folder for the email file.")
+                    else:
+                        messagebox.showinfo("Test Email", 
+                                          f"✅ Test email sent successfully!\n\n"
+                                          f"Check your inbox (and spam folder).")
+                else:
+                    self.email_test_results.insert("end", 
+                        f"[{timestamp}] ❌ Failed to send test email!\n"
+                        f"    {message}\n\n")
+                    AlertManager.show_error("Email Delivery Failed", f"SMTP Error: {message}")
+                    messagebox.showerror("Test Email", 
+                                       f"❌ Failed to send test email:\n\n{message}")
+                
+                self.email_test_results.see("end")
+                self.email_test_results.configure(state="disabled")
+            
+            self.frame.after(0, show_results)
+
+        threading.Thread(target=run_actual_send, daemon=True).start()
     
     def clear_email_results(self):
         """Clear email test results"""

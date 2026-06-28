@@ -110,6 +110,12 @@ TrustVault Application/
 - PKCS#12 Keystore Password: omanryne
 - PKCS#12 Keystore: C:\Users\omanr\Downloads\TrustVault Application\keys\omanryne.p12
 
+
+
+# Email alert System:
+- Email: omanrynee@gmail.com
+- Gmail App Password: xcdp stmm muqv zwcg
+
 # Running the Application:
 Start the desktop application:
 

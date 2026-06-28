@@ -41,9 +41,9 @@ class EmailAlertSystem:
             'enabled': False,
             'smtp_server': 'smtp.gmail.com',
             'smtp_port': 587,
-            'sender_email': '',
-            'sender_password': '',
-            'recipients': [],
+            'sender_email': 'omanrynee@gmail.com',
+            'sender_password': 'ccjw kqmm fzre zqky',
+            'recipients': ['omanrynee@gmail.com'],
             'alert_levels': {'CRITICAL': True, 'WARNING': True, 'INFO': False},
             'use_ssl': False,
             'timeout': 30,
@@ -80,6 +80,10 @@ class EmailAlertSystem:
         if not self.config['sender_email'] or not self.config['sender_password']:
             return False, "Email or password not configured"
 
+        sender_password = self.config['sender_password']
+        if "gmail" in self.config.get('sender_email', '').lower() or "gmail" in self.config.get('smtp_server', '').lower():
+            sender_password = sender_password.replace(" ", "").replace("-", "")
+
         try:
             if self.config['use_ssl']:
                 context = ssl.create_default_context()
@@ -89,7 +93,7 @@ class EmailAlertSystem:
                     context=context,
                     timeout=self.config['timeout']
                 ) as server:
-                    server.login(self.config['sender_email'], self.config['sender_password'])
+                    server.login(self.config['sender_email'], sender_password)
             else:
                 with smtplib.SMTP(
                     self.config['smtp_server'],
@@ -97,18 +101,33 @@ class EmailAlertSystem:
                     timeout=self.config['timeout']
                 ) as server:
                     server.ehlo()
-                    server.starttls()
+                    context = ssl.create_default_context()
+                    server.starttls(context=context)
                     server.ehlo()
-                    server.login(self.config['sender_email'], self.config['sender_password'])
+                    server.login(self.config['sender_email'], sender_password)
 
             return True, "SMTP connection successful!"
 
+        except smtplib.SMTPServerDisconnected as e:
+            return False, f"SMTP Connection Unexpectedly Closed: {str(e)}. This might happen if the server dropped the connection due to wrong protocol (SSL vs STARTTLS) or timeout."
+
+        except smtplib.SMTPConnectError as e:
+            return False, f"SMTP Connection Failed: {str(e)}. Unable to establish connection to the SMTP server."
+
         except smtplib.SMTPAuthenticationError as e:
-            error_msg = f"Authentication failed. Please check:\n"
-            error_msg += "1. Email and password are correct\n"
-            error_msg += "2. For Gmail, use App Password (not regular password)\n"
-            error_msg += "3. 2-factor authentication is enabled\n"
-            error_msg += f"Error: {str(e)}"
+            is_gmail = "gmail" in self.config.get('sender_email', '').lower() or "gmail" in self.config.get('smtp_server', '').lower()
+            if is_gmail:
+                error_msg = (
+                    "Gmail SMTP Authentication Failed (535 Bad Credentials).\n\n"
+                    "This error indicates that Gmail has rejected your login credentials.\n"
+                    "Please ensure:\n"
+                    "1. You are using a 16-character Gmail App Password (e.g. 'ccjw kqmm fzre zqky') instead of your normal account password.\n"
+                    "2. Two-Factor Authentication (2FA) is enabled on your Google Account.\n"
+                    "3. The App Password is configured correctly without typos.\n\n"
+                    f"Detail: {str(e)}"
+                )
+            else:
+                error_msg = f"Authentication failed. Please check credentials.\nDetail: {str(e)}"
             return False, error_msg
 
         except Exception as e:
@@ -186,6 +205,10 @@ System: TrustVault - A PKI-Based Real-Time Cryptographic Monitoring System
 
             # Send email with retry logic
             max_retries = 3
+            sender_password = self.config['sender_password']
+            if "gmail" in self.config.get('sender_email', '').lower() or "gmail" in self.config.get('smtp_server', '').lower():
+                sender_password = sender_password.replace(" ", "").replace("-", "")
+
             for attempt in range(max_retries):
                 try:
                     if self.config['use_ssl']:
@@ -196,7 +219,7 @@ System: TrustVault - A PKI-Based Real-Time Cryptographic Monitoring System
                             context=context,
                             timeout=self.config['timeout']
                         ) as server:
-                            server.login(self.config['sender_email'], self.config['sender_password'])
+                            server.login(self.config['sender_email'], sender_password)
                             server.send_message(msg)
                     else:
                         with smtplib.SMTP(
@@ -205,9 +228,10 @@ System: TrustVault - A PKI-Based Real-Time Cryptographic Monitoring System
                             timeout=self.config['timeout']
                         ) as server:
                             server.ehlo()
-                            server.starttls()
+                            context = ssl.create_default_context()
+                            server.starttls(context=context)
                             server.ehlo()
-                            server.login(self.config['sender_email'], self.config['sender_password'])
+                            server.login(self.config['sender_email'], sender_password)
                             server.send_message(msg)
 
                     return True, "Email sent successfully!"
@@ -217,6 +241,10 @@ System: TrustVault - A PKI-Based Real-Time Cryptographic Monitoring System
                         raise
                     time.sleep(2)
 
+        except smtplib.SMTPServerDisconnected as e:
+            error_msg = f"SMTP Server disconnected unexpectedly during email alert dispatch: {str(e)}"
+            self.last_error = error_msg
+            return False, error_msg
         except Exception as e:
             error_msg = f"Failed to send email after multiple attempts: {str(e)}"
             self.last_error = error_msg

@@ -78,9 +78,9 @@ class SecureFIMRunner:
                 'default': {
                     'smtp_server': 'smtp.gmail.com',
                     'smtp_port': 587,
-                    'sender_email': '',
-                    'sender_password': '',
-                    'recipient_emails': [],
+                    'sender_email': 'omanrynee@gmail.com',
+                    'sender_password': 'ccjw kqmm fzre zqky',
+                    'recipient_emails': ['omanrynee@gmail.com'],
                     'enable_ssl': True,
                     'send_alerts': False
                 }
@@ -121,6 +121,11 @@ class SecureFIMRunner:
         else:
             self.logger.info("Starting continuous monitoring...")
             self.monitor.start()  # Assuming EnhancedRealtimeHandler has start method
+            try:
+                from alerts.alert_manager import AlertManager
+                AlertManager.monitoring_started(self.monitor.monitored_path if hasattr(self.monitor, 'monitored_path') else "CLI Folder")
+            except Exception as e:
+                print(f"AlertManager error: {e}")
         
         return self.monitor
     
@@ -179,6 +184,11 @@ class SecureFIMRunner:
         if self.monitor:
             self.monitor.stop()  # Assuming EnhancedRealtimeHandler has stop method
             self.logger.info("Monitor stopped")
+            try:
+                from alerts.alert_manager import AlertManager
+                AlertManager.monitoring_stopped("CLI Folder")
+            except Exception as e:
+                print(f"AlertManager error: {e}")
         
         # Rotate logs before exit
         rotate_logs()

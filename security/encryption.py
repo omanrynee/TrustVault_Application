@@ -254,6 +254,11 @@ def encrypt_file(
         )
 
     except Exception as exc:
+        try:
+            from alerts.alert_manager import AlertManager
+            AlertManager.encryption_failed(filepath, str(exc))
+        except Exception as e:
+            print(f"AlertManager error: {e}")
         return False, f"Encryption failed: {exc}"
 
 
@@ -307,6 +312,11 @@ def decrypt_file(
                 aes_key = private_key.decrypt(enc_key, _RSA_OAEP_PADDING)
                 plaintext = _aes_gcm_decrypt(aes_key, nonce, ciphertext)
         except Exception:
+            try:
+                from alerts.alert_manager import AlertManager
+                AlertManager.decryption_failed(enc_path, "Authentication tag mismatch (tampering) or wrong key password")
+            except Exception as e:
+                print(f"AlertManager error: {e}")
             return False, (
                 "Decryption FAILED — ciphertext authentication error.\n"
                 "The encrypted file may have been tampered with, or the wrong private key was used."
@@ -333,6 +343,11 @@ def decrypt_file(
         )
 
     except Exception as exc:
+        try:
+            from alerts.alert_manager import AlertManager
+            AlertManager.decryption_failed(enc_path, str(exc))
+        except Exception as e:
+            print(f"AlertManager error: {e}")
         return False, f"Decryption failed: {exc}"
 
 
@@ -371,6 +386,11 @@ def encrypt_message(
         return True, envelope_b64
 
     except Exception as exc:
+        try:
+            from alerts.alert_manager import AlertManager
+            AlertManager.encryption_failed("In-memory message", str(exc))
+        except Exception as e:
+            print(f"AlertManager error: {e}")
         return False, f"Message encryption failed: {exc}"
 
 
@@ -408,6 +428,11 @@ def decrypt_message(
                 aes_key = private_key.decrypt(enc_key, _RSA_OAEP_PADDING)
                 plaintext = _aes_gcm_decrypt(aes_key, nonce, ciphertext)
         except Exception:
+            try:
+                from alerts.alert_manager import AlertManager
+                AlertManager.decryption_failed("In-memory message", "Message decryption failed (authentication tag mismatch or wrong key)")
+            except Exception as e:
+                print(f"AlertManager error: {e}")
             return False, (
                 "Message decryption FAILED — authentication tag mismatch.\n"
                 "The message may have been tampered with, or the wrong private key was used."
@@ -417,4 +442,9 @@ def decrypt_message(
         return True, plaintext.decode("utf-8")
 
     except Exception as exc:
+        try:
+            from alerts.alert_manager import AlertManager
+            AlertManager.decryption_failed("In-memory message", str(exc))
+        except Exception as e:
+            print(f"AlertManager error: {e}")
         return False, f"Message decryption failed: {exc}"

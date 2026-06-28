@@ -177,6 +177,10 @@ class EnhancedRealtimeHandler(FileEventHandler):
     def _handle_anomaly(self, event_data):
         """Handle anomaly detection"""
         self.log(f"ANOMALY DETECTED: {event_data['event_type']} on {event_data['file_path']}", "ANOMALY")
+        
+        from alerts.alert_manager import AlertManager
+        AlertManager.anomaly_detected(event_data['file_path'], f"Anomalous file activity. Event type: {event_data['event_type']}")
+        
         if self.email_system and self.alert_thresholds['send_email_alerts']:
             try:
                 self.email_system.send_alert(
@@ -190,6 +194,10 @@ class EnhancedRealtimeHandler(FileEventHandler):
     def _handle_ransomware(self, event_data):
         """Handle ransomware detection"""
         self.log(f"RANSOMWARE SUSPECTED: {event_data['file_path']}", "CRITICAL")
+        
+        from alerts.alert_manager import AlertManager
+        AlertManager.ransomware_detected(event_data['file_path'], "Suspicious ransomware write pattern detected by runner")
+        
         if self.email_system and self.alert_thresholds['send_email_alerts']:
             try:
                 self.email_system.send_alert(
@@ -203,7 +211,24 @@ class EnhancedRealtimeHandler(FileEventHandler):
     def _send_alerts(self, event_data):
         """Send appropriate alerts for the event"""
         event_type = event_data['event_type']
+        file_path = event_data['file_path']
+        dest_path = event_data.get('dest_path')
         
+        # Trigger AlertManager for FIM events
+        from alerts.alert_manager import AlertManager
+        if event_data.get('is_ransomware', False):
+            pass
+        elif event_data.get('is_anomaly', False):
+            pass
+        elif event_type == 'CREATED':
+            AlertManager.file_created(file_path)
+        elif event_type == 'MODIFIED':
+            AlertManager.file_modified(file_path)
+        elif event_type == 'DELETED':
+            AlertManager.file_deleted(file_path)
+        elif event_type == 'MOVED':
+            AlertManager.file_renamed(file_path, dest_path or "")
+            
         if event_data.get('is_ransomware', False):
             alert_level = "RANSOMWARE"
         elif event_data.get('is_anomaly', False):
