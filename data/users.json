@@ -1,0 +1,38 @@
+{
+  "omanryne_login": {
+    "username": "omanryne_login",
+    "role": "Operator",
+    "email": "",
+    "salt": "IXXH6rAm3J7hRd1fXRNfqw==",
+    "password_hash": "EhmPqFSqOAfPD2auuD92/n0yUhFk1t2qXEvP7qt5H4o=",
+    "cert_path": "certs\\omanryne_login.pem",
+    "pkcs12_path": "keys\\omanryne_login.p12",
+    "created_at": "2026-06-27T08:12:11.500653+00:00",
+    "updated_at": "2026-06-27T08:12:11.500653+00:00",
+    "active": true
+  },
+  "omanryne": {
+    "username": "omanryne",
+    "role": "Operator",
+    "email": "",
+    "salt": "CO1eIHkEZujNaVh2XxFU8A==",
+    "password_hash": "g8V9N/IlHdAVfRlvT5z/9t4ZrnsI2dGqM/MhFxSKwlg=",
+    "cert_path": "certs\\omanryne.pem",
+    "pkcs12_path": "keys\\omanryne.p12",
+    "created_at": "2026-06-27T09:43:33.622022+00:00",
+    "updated_at": "2026-06-27T09:43:33.622022+00:00",
+    "active": true
+  },
+  "hello": {
+    "username": "hello",
+    "role": "Operator",
+    "email": "",
+    "salt": "yk3IkxwCasc68z2fDS+NNQ==",
+    "password_hash": "0BiP0XjxfKGWrNnCIgPJACdyuf70RGRykav/vZdYE1U=",
+    "cert_path": "certs\\hello.pem",
+    "pkcs12_path": "keys\\hello.p12",
+    "created_at": "2026-06-27T17:33:47.425162+00:00",
+    "updated_at": "2026-06-27T17:33:47.425162+00:00",
+    "active": true
+  }
+}

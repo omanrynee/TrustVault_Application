@@ -1,0 +1,706 @@
+[
+  {
+    "timestamp": "2026-06-27T00:37:51.721409",
+    "user": "admin",
+    "action": "LOGIN_SUCCESS",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T00:39:57.028979",
+    "user": "admin",
+    "action": "LOGIN_SUCCESS",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T00:44:12.124004",
+    "user": "admin",
+    "action": "LOGIN_SUCCESS",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T00:44:52.576572",
+    "user": "admin",
+    "action": "LOGIN_SUCCESS",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T00:47:17.526441",
+    "user": "admin",
+    "action": "LOGIN_SUCCESS",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T00:51:06.381988",
+    "user": "admin",
+    "action": "LOGIN_SUCCESS",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T00:58:21.421457",
+    "user": "admin",
+    "action": "LOGIN_SUCCESS",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T11:03:43.196312",
+    "user": "admin",
+    "action": "LOGIN_SUCCESS",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T11:05:36.437075",
+    "user": "omanryne",
+    "action": "LOGIN_FAILED",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T11:05:41.049375",
+    "user": "omanryne",
+    "action": "LOGIN_FAILED",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T11:05:47.815737",
+    "user": "admin",
+    "action": "LOGIN_SUCCESS",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T11:26:57.021127",
+    "user": "admin",
+    "action": "LOGIN_SUCCESS",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T11:38:57.156367",
+    "user": "admin",
+    "action": "LOGIN_SUCCESS",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T11:43:32.175893",
+    "user": "admin",
+    "action": "LOGIN_SUCCESS",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T11:45:44.191323",
+    "user": "admin",
+    "action": "LOGIN_SUCCESS",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T12:11:27.860647",
+    "user": "admin",
+    "action": "LOGIN_SUCCESS",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T12:17:24.015625",
+    "user": "admin",
+    "action": "LOGIN_SUCCESS",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T12:58:44.279351",
+    "user": "admin",
+    "action": "LOGIN_SUCCESS",
+    "ip": "192.168.1.73"
+  },
+  {
+    "timestamp": "2026-06-27T07:53:34.503192+00:00",
+    "event_type": "AUTH_FAILED",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Invalid account password",
+    "severity": "WARNING",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T08:12:11.181134+00:00",
+    "event_type": "ROOT_CA_CREATED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "TrustVault Root CA created",
+    "severity": "INFO",
+    "details": {
+      "cert_path": "certs\\trustvault_root_ca.pem"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T08:12:11.500653+00:00",
+    "event_type": "CERTIFICATE_GENERATED",
+    "user": "omanryne_login",
+    "ip_address": "192.168.1.73",
+    "description": "CA-signed certificate generated",
+    "severity": "INFO",
+    "details": {
+      "key_algorithm": "RSA-2048",
+      "cert_path": "certs\\omanryne_login.pem",
+      "pkcs12_path": "keys\\omanryne_login.p12"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T08:12:56.729917+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne_login",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T08:13:57.253070+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne_login",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T08:41:27.825712+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne_login",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T09:13:19.203516+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne_login",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T09:21:12.493981+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne_login",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T09:36:30.440590+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne_login",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T09:42:56.524320+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne_login",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T09:43:33.622022+00:00",
+    "event_type": "CERTIFICATE_GENERATED",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "CA-signed certificate generated",
+    "severity": "INFO",
+    "details": {
+      "key_algorithm": "RSA-2048",
+      "cert_path": "certs\\omanryne.pem",
+      "pkcs12_path": "keys\\omanryne.p12"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T09:44:13.530777+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T09:49:16.920257+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T12:43:12.791240+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T13:34:38.991186+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne_login",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T13:34:39.733568+00:00",
+    "event_type": "SIGNATURE_CREATED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File signed",
+    "severity": "INFO",
+    "details": {
+      "file_path": "C:\\Users\\omanr\\Downloads\\TrustVault Application\\.qa_runtime\\sample.txt",
+      "signature_path": "C:\\Users\\omanr\\Downloads\\TrustVault Application\\.qa_runtime\\sample.txt.sig",
+      "algorithm": "RSA-PSS"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T13:34:40.721398+00:00",
+    "event_type": "SIGNATURE_VERIFIED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File signature verified",
+    "severity": "INFO",
+    "details": {
+      "file_path": "C:\\Users\\omanr\\Downloads\\TrustVault Application\\.qa_runtime\\sample.txt",
+      "signature_path": "C:\\Users\\omanr\\Downloads\\TrustVault Application\\.qa_runtime\\sample.txt.sig",
+      "certificate": "certs\\omanryne_login.pem"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T13:34:41.534665+00:00",
+    "event_type": "FILE_ENCRYPTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File encrypted",
+    "severity": "INFO",
+    "details": {
+      "file_path": "C:\\Users\\omanr\\Downloads\\TrustVault Application\\.qa_runtime\\sample.txt",
+      "output_path": "C:\\Users\\omanr\\Downloads\\TrustVault Application\\.qa_runtime\\sample.txt.enc",
+      "recipient": "certs\\omanryne_login.pem"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T13:34:42.448904+00:00",
+    "event_type": "FILE_DECRYPTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File decrypted",
+    "severity": "INFO",
+    "details": {
+      "encrypted_path": "C:\\Users\\omanr\\Downloads\\TrustVault Application\\.qa_runtime\\sample.txt.enc",
+      "output_path": "C:\\Users\\omanr\\Downloads\\TrustVault Application\\.qa_runtime\\sample.txt.dec"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T13:47:14.618191+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T15:30:34.507460+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T15:48:16.417752+00:00",
+    "event_type": "SIGNATURE_CREATED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File signed",
+    "severity": "INFO",
+    "details": {
+      "file_path": "C:/Users/omanr/Downloads/TEST.txt",
+      "signature_path": "C:/Users/omanr/Downloads/TEST.txt.sig",
+      "algorithm": "RSA-PSS"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T15:49:29.775483+00:00",
+    "event_type": "REPLAY_REJECTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "Reused nonce for signature:C:\\Users\\omanr\\Downloads\\TEST.txt.sig",
+    "severity": "CRITICAL",
+    "details": {
+      "nonce": "XCUbTqmkDxg9ru2gz6DwomzszJs6TD9x"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T15:49:41.046958+00:00",
+    "event_type": "REPLAY_REJECTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "Reused nonce for signature:C:\\Users\\omanr\\Downloads\\TEST.txt.sig",
+    "severity": "CRITICAL",
+    "details": {
+      "nonce": "XCUbTqmkDxg9ru2gz6DwomzszJs6TD9x"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T15:49:56.551526+00:00",
+    "event_type": "REPLAY_REJECTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "Reused nonce for signature:C:\\Users\\omanr\\Downloads\\TEST.txt.sig",
+    "severity": "CRITICAL",
+    "details": {
+      "nonce": "XCUbTqmkDxg9ru2gz6DwomzszJs6TD9x"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T15:49:57.385495+00:00",
+    "event_type": "REPLAY_REJECTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "Reused nonce for signature:C:\\Users\\omanr\\Downloads\\TEST.txt.sig",
+    "severity": "CRITICAL",
+    "details": {
+      "nonce": "XCUbTqmkDxg9ru2gz6DwomzszJs6TD9x"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T15:49:57.604373+00:00",
+    "event_type": "REPLAY_REJECTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "Reused nonce for signature:C:\\Users\\omanr\\Downloads\\TEST.txt.sig",
+    "severity": "CRITICAL",
+    "details": {
+      "nonce": "XCUbTqmkDxg9ru2gz6DwomzszJs6TD9x"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T15:50:08.081904+00:00",
+    "event_type": "SIGNATURE_CREATED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File signed",
+    "severity": "INFO",
+    "details": {
+      "file_path": "C:/Users/omanr/Downloads/TEST.txt",
+      "signature_path": "C:/Users/omanr/Downloads/TEST.txt.sig",
+      "algorithm": "RSA-PSS"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T15:50:24.602331+00:00",
+    "event_type": "REPLAY_REJECTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "Reused nonce for signature:C:\\Users\\omanr\\Downloads\\TEST.txt.sig",
+    "severity": "CRITICAL",
+    "details": {
+      "nonce": "hPn88XHSBZEgkja8H8e-X_6qEY5Zn-ig"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T15:51:32.929939+00:00",
+    "event_type": "SIGNATURE_CREATED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File signed",
+    "severity": "INFO",
+    "details": {
+      "file_path": "C:/Users/omanr/Downloads/TEST.txt",
+      "signature_path": "C:/Users/omanr/Downloads/TEST.txt.sig",
+      "algorithm": "RSA-PSS"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T15:52:35.845209+00:00",
+    "event_type": "REPLAY_REJECTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "Reused nonce for signature:C:\\Users\\omanr\\Downloads\\TEST.txt.sig",
+    "severity": "CRITICAL",
+    "details": {
+      "nonce": "rfk0Z443mJznek_Ppa715KStmOgA31nI"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T15:56:21.016977+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T15:57:41.501238+00:00",
+    "event_type": "SIGNATURE_CREATED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File signed",
+    "severity": "INFO",
+    "details": {
+      "file_path": "C:/Users/omanr/Downloads/New Text Document.txt",
+      "signature_path": "C:/Users/omanr/Downloads/New Text Document.txt.sig",
+      "algorithm": "RSA-PSS"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T15:59:50.344876+00:00",
+    "event_type": "FILE_ENCRYPTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File encrypted",
+    "severity": "INFO",
+    "details": {
+      "file_path": "C:/Users/omanr/Downloads/New Text Document.txt",
+      "output_path": "C:/Users/omanr/Downloads/New Text Document.txt.enc",
+      "recipient": "C:/Users/omanr/Downloads/TrustVault Application/certs/omanryne.pem"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T16:00:25.987518+00:00",
+    "event_type": "REPLAY_REJECTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "Reused nonce for encrypted-file:C:\\Users\\omanr\\Downloads\\New Text Document.txt.enc",
+    "severity": "CRITICAL",
+    "details": {
+      "nonce": "seenbXx-GEj1FQz-yIP9sT00uN9AcQwO"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T16:00:36.435439+00:00",
+    "event_type": "FILE_ENCRYPTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File encrypted",
+    "severity": "INFO",
+    "details": {
+      "file_path": "C:/Users/omanr/Downloads/New Text Document.txt",
+      "output_path": "C:/Users/omanr/Downloads/New Text Document.txt.enc",
+      "recipient": "C:/Users/omanr/Downloads/TrustVault Application/certs/omanryne.pem"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T16:00:53.091766+00:00",
+    "event_type": "FILE_DECRYPTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File decrypted",
+    "severity": "INFO",
+    "details": {
+      "encrypted_path": "C:/Users/omanr/Downloads/New Text Document.txt.enc",
+      "output_path": "C:/Users/omanr/Downloads/New Text Document.txt"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T16:05:12.142148+00:00",
+    "event_type": "AUTH_FAILED",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "[Errno 22] Invalid argument: '\\\\C:/Users/omanr/Downloads/TrustVault Application/keys/omanryne.p12'",
+    "severity": "WARNING",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T16:05:15.870956+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T16:07:22.909313+00:00",
+    "event_type": "SIGNATURE_CREATED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File signed",
+    "severity": "INFO",
+    "details": {
+      "file_path": "C:/Users/omanr/Downloads/omanryne.txt",
+      "signature_path": "C:/Users/omanr/Downloads/omanryne.txt.sig",
+      "algorithm": "RSA-PSS"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T16:07:52.557959+00:00",
+    "event_type": "SIGNATURE_VERIFIED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File signature verified",
+    "severity": "INFO",
+    "details": {
+      "file_path": "C:/Users/omanr/Downloads/omanryne.txt",
+      "signature_path": "C:/Users/omanr/Downloads/omanryne.txt.sig",
+      "certificate": "C:/Users/omanr/Downloads/TrustVault Application/keys/omanryne_login_public.pem"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T16:08:52.479416+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne_login",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T17:21:36.350634+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T17:33:47.426177+00:00",
+    "event_type": "CERTIFICATE_GENERATED",
+    "user": "hello",
+    "ip_address": "192.168.1.73",
+    "description": "CA-signed certificate generated",
+    "severity": "INFO",
+    "details": {
+      "key_algorithm": "RSA-2048",
+      "cert_path": "certs\\hello.pem",
+      "pkcs12_path": "keys\\hello.p12"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T17:35:09.493075+00:00",
+    "event_type": "SIGNATURE_CREATED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File signed",
+    "severity": "INFO",
+    "details": {
+      "file_path": "C:/Users/omanr/Downloads/New Text Document.txt",
+      "signature_path": "C:/Users/omanr/Downloads/New Text Document.txt.sig",
+      "algorithm": "RSA-PSS"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T17:35:36.823473+00:00",
+    "event_type": "SIGNATURE_VERIFIED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File signature verified",
+    "severity": "INFO",
+    "details": {
+      "file_path": "C:/Users/omanr/Downloads/New Text Document.txt",
+      "signature_path": "C:/Users/omanr/Downloads/New Text Document.txt.sig",
+      "certificate": "C:/Users/omanr/Downloads/TrustVault Application/keys/omanryne_public.pem"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T17:36:03.810016+00:00",
+    "event_type": "FILE_ENCRYPTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File encrypted",
+    "severity": "INFO",
+    "details": {
+      "file_path": "C:/Users/omanr/Downloads/New Text Document.txt",
+      "output_path": "C:/Users/omanr/Downloads/New Text Document.txt.enc",
+      "recipient": "C:/Users/omanr/Downloads/TrustVault Application/keys/omanryne_public.pem"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T17:36:28.743250+00:00",
+    "event_type": "FILE_DECRYPTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "File decrypted",
+    "severity": "INFO",
+    "details": {
+      "encrypted_path": "C:/Users/omanr/Downloads/New Text Document.txt.enc",
+      "output_path": "C:/Users/omanr/Downloads/New Text Document.txt"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T17:37:10.761728+00:00",
+    "event_type": "MESSAGE_SIGNED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "Message signed",
+    "severity": "INFO",
+    "details": {
+      "algorithm": "RSA-PSS"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T17:37:17.196846+00:00",
+    "event_type": "MESSAGE_SIGNATURE_VERIFIED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "Message signature verified",
+    "severity": "INFO",
+    "details": {
+      "certificate": "C:/Users/omanr/Downloads/TrustVault Application/keys/omanryne_public.pem"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T17:37:19.146346+00:00",
+    "event_type": "MESSAGE_ENCRYPTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "Message encrypted",
+    "severity": "INFO",
+    "details": {
+      "recipient": "C:/Users/omanr/Downloads/TrustVault Application/keys/omanryne_public.pem"
+    }
+  },
+  {
+    "timestamp": "2026-06-27T17:37:21.223230+00:00",
+    "event_type": "MESSAGE_DECRYPTED",
+    "user": "system",
+    "ip_address": "192.168.1.73",
+    "description": "Message decrypted",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-27T19:10:57.308192+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-28T05:51:04.287096+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.2.86",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  },
+  {
+    "timestamp": "2026-06-28T13:13:42.772375+00:00",
+    "event_type": "LOGIN_SUCCESS",
+    "user": "omanryne",
+    "ip_address": "192.168.1.73",
+    "description": "Certificate authentication succeeded",
+    "severity": "INFO",
+    "details": {}
+  }
+]

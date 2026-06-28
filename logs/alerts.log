@@ -1,0 +1,4 @@
+2026-06-27T01:00:28.105587 [INFO] Test Alert: This is a test alert from TrustVault Discord configuration
+2026-06-27T21:25:11.840860 [TAMPER] File Tampering Detected: File TEST.txt has been modified!
+2026-06-27T23:15:35.835956 [TAMPER] File Tampering Detected: File New Text Document.txt has been modified!
+2026-06-27T23:16:11.529744 [TAMPER] File Tampering Detected: File New Text Document.txt has been modified!

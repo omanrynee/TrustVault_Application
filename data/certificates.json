@@ -1,0 +1,46 @@
+{
+  "certificates": [
+    {
+      "username": "admin",
+      "status": "ACTIVE",
+      "created": "2026-06-26",
+      "expires": "2027-06-26"
+    },
+    {
+      "username": "omanryne",
+      "status": "ACTIVE",
+      "created": "2026-06-27",
+      "expires": "2027-06-27"
+    },
+    {
+      "username": "omanryne_login",
+      "status": "ACTIVE",
+      "created": "2026-06-27",
+      "expires": "2027-06-27"
+    },
+    {
+      "username": "pkcs12_test_user",
+      "status": "ACTIVE",
+      "created": "2026-06-27",
+      "expires": "2027-06-27"
+    },
+    {
+      "username": "pkcs12_user_b",
+      "status": "ACTIVE",
+      "created": "2026-06-27",
+      "expires": "2027-06-27"
+    },
+    {
+      "username": "rynee",
+      "status": "ACTIVE",
+      "created": "2026-06-27",
+      "expires": "2027-06-27"
+    },
+    {
+      "username": "trustvault_root_ca",
+      "status": "ACTIVE",
+      "created": "2026-06-27",
+      "expires": "2036-06-24"
+    }
+  ]
+}

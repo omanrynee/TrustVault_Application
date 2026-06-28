@@ -1,0 +1,7 @@
+.git
+__pycache__/
+*.pyc
+logs/
+CSV_logs/
+temp/
+.env

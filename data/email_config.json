@@ -1,0 +1,16 @@
+{
+  "enabled": false,
+  "smtp_server": "smtp.gmail.com",
+  "smtp_port": 587,
+  "sender_email": "",
+  "sender_password": "",
+  "recipients": [],
+  "alert_levels": {
+    "CRITICAL": true,
+    "WARNING": true,
+    "INFO": true
+  },
+  "use_ssl": false,
+  "timeout": 30,
+  "test_mode": false
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "username": "lllll",
+    "revoked_at": "2026-06-27T11:43:48.618809",
+    "revoked_by": "admin"
+  },
+  {
+    "username": "hhhh",
+    "revoked_at": "2026-06-27T11:44:10.730038",
+    "revoked_by": "admin"
+  },
+  {
+    "username": "rynee",
+    "revoked_at": "2026-06-27T12:11:52.482877",
+    "revoked_by": "admin"
+  },
+  {
+    "username": "omannnnnnnn",
+    "revoked_at": "2026-06-27T12:18:02.969232",
+    "revoked_by": "admin"
+  },
+  {
+    "username": "omannnnnnnnnnnnnnnnn",
+    "revoked_at": "2026-06-27T12:18:27.293490",
+    "revoked_by": "admin"
+  },
+  {
+    "username": "alice",
+    "revoked_at": "2026-06-27T14:26:58.539298",
+    "revoked_by": "omanryne_login"
+  },
+  {
+    "username": "bob",
+    "revoked_at": "2026-06-27T15:07:07.837956",
+    "revoked_by": "omanryne_login"
+  },
+  {
+    "username": "nopass_user",
+    "revoked_at": "2026-06-27T15:29:48.231254",
+    "revoked_by": "omanryne"
+  },
+  {
+    "username": "hello",
+    "revoked_at": "2026-06-27T23:18:54.713780",
+    "revoked_by": "omanryne"
+  }
+]

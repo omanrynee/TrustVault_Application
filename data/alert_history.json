@@ -1,0 +1,143 @@
+[
+  {
+    "type": "INFO",
+    "title": "Test Alert",
+    "message": "This is a test alert from TrustVault Discord configuration",
+    "details": {
+      "Type": "Configuration Test",
+      "Status": "Successful",
+      "Time": "01:00:28",
+      "User": "admin",
+      "Token Type": "user"
+    },
+    "file_path": null,
+    "timestamp": "2026-06-27T01:00:28.105587",
+    "sent_to_discord": true
+  },
+  {
+    "type": "ANOMALY",
+    "title": "\ud83d\udea8 BURST Anomaly Detected",
+    "message": "**10 events in 30 seconds!**\nExpected: ~6 events\nCurrent rate: 10.0 events/min\nBaseline: 12.0 events/min",
+    "details": {
+      "current_rate": 10.0,
+      "baseline_rate": 12.0,
+      "window_events": 10,
+      "timestamp": "2026-06-27T15:22:09.414488",
+      "burst_count": 10,
+      "burst_window": 30,
+      "burst_rate": 0.333,
+      "expected_in_window": 6.0,
+      "detection_method": "10 events in 30s (expected ~6)"
+    },
+    "file_path": null,
+    "timestamp": "2026-06-27T15:22:10.336747",
+    "sent_to_discord": true
+  },
+  {
+    "type": "ANOMALY",
+    "title": "\ud83d\udea8 BURST Anomaly Detected",
+    "message": "**10 events in 30 seconds!**\nExpected: ~6 events\nCurrent rate: 10.0 events/min\nBaseline: 12.0 events/min",
+    "details": {
+      "current_rate": 10.0,
+      "baseline_rate": 12.0,
+      "window_events": 10,
+      "timestamp": "2026-06-27T21:21:39.531111",
+      "burst_count": 10,
+      "burst_window": 30,
+      "burst_rate": 0.333,
+      "expected_in_window": 6.0,
+      "detection_method": "10 events in 30s (expected ~6)"
+    },
+    "file_path": null,
+    "timestamp": "2026-06-27T21:21:40.389261",
+    "sent_to_discord": true
+  },
+  {
+    "type": "TAMPER",
+    "title": "File Tampering Detected",
+    "message": "File TEST.txt has been modified!",
+    "details": {
+      "filepath": "C:/Users/omanr/Downloads/TEST.txt",
+      "original_hash": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "current_hash": "2216463a4e3cb35f6a30742d0e68a9f001ce177475eb3bad2b303d5fd2fd60be",
+      "registered": "2026-06-27T21:24:49.477332",
+      "filename": "TEST.txt",
+      "size_change": 18,
+      "modified_time": 1782574807.330661,
+      "original_modified": 1782574760.7004683
+    },
+    "file_path": "C:/Users/omanr/Downloads/TEST.txt",
+    "timestamp": "2026-06-27T21:25:11.840860",
+    "sent_to_discord": true
+  },
+  {
+    "type": "ANOMALY",
+    "title": "\ud83d\udea8 BURST Anomaly Detected",
+    "message": "**10 events in 30 seconds!**\nExpected: ~6 events\nCurrent rate: 10.0 events/min\nBaseline: 12.0 events/min",
+    "details": {
+      "current_rate": 10.0,
+      "baseline_rate": 12.0,
+      "window_events": 10,
+      "timestamp": "2026-06-27T23:12:36.192430",
+      "burst_count": 10,
+      "burst_window": 30,
+      "burst_rate": 0.333,
+      "expected_in_window": 6.0,
+      "detection_method": "10 events in 30s (expected ~6)"
+    },
+    "file_path": null,
+    "timestamp": "2026-06-27T23:12:36.192954"
+  },
+  {
+    "type": "TAMPER",
+    "title": "File Tampering Detected",
+    "message": "File New Text Document.txt has been modified!",
+    "details": {
+      "filepath": "C:/Users/omanr/Downloads/New Text Document.txt",
+      "original_hash": "05ade08fcfb104f40b2536a14dfcd6e916d643f5cf8044b19028b607ae8f4908",
+      "current_hash": "2f5f6ce5ae30b54aa5d7ced1ba566982bab34ba2814a51ce1865d2c2d8815cd4",
+      "registered": "2026-06-27T23:15:02.621502",
+      "filename": "New Text Document.txt",
+      "size_change": 5,
+      "modified_time": 1782581428.4745748,
+      "original_modified": 1782581390.7879262
+    },
+    "file_path": "C:/Users/omanr/Downloads/New Text Document.txt",
+    "timestamp": "2026-06-27T23:15:35.835956"
+  },
+  {
+    "type": "TAMPER",
+    "title": "File Tampering Detected",
+    "message": "File New Text Document.txt has been modified!",
+    "details": {
+      "filepath": "C:/Users/omanr/Downloads/New Text Document.txt",
+      "original_hash": "05ade08fcfb104f40b2536a14dfcd6e916d643f5cf8044b19028b607ae8f4908",
+      "current_hash": "2f5f6ce5ae30b54aa5d7ced1ba566982bab34ba2814a51ce1865d2c2d8815cd4",
+      "registered": "2026-06-27T23:15:02.621502",
+      "filename": "New Text Document.txt",
+      "size_change": 5,
+      "modified_time": 1782581428.4745748,
+      "original_modified": 1782581390.7879262
+    },
+    "file_path": "C:/Users/omanr/Downloads/New Text Document.txt",
+    "timestamp": "2026-06-27T23:16:11.529744"
+  },
+  {
+    "type": "ANOMALY",
+    "title": "\ud83d\udea8 BURST Anomaly Detected",
+    "message": "**10 events in 30 seconds!**\nExpected: ~6 events\nCurrent rate: 10.0 events/min\nBaseline: 12.0 events/min",
+    "details": {
+      "current_rate": 10.0,
+      "baseline_rate": 12.0,
+      "window_events": 10,
+      "timestamp": "2026-06-28T11:38:44.145533",
+      "burst_count": 10,
+      "burst_window": 30,
+      "burst_rate": 0.333,
+      "expected_in_window": 6.0,
+      "detection_method": "10 events in 30s (expected ~6)"
+    },
+    "file_path": null,
+    "timestamp": "2026-06-28T11:38:44.145533"
+  }
+]
