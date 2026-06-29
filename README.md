@@ -30,6 +30,8 @@ TrustVault is a PKI-based real-time cryptographic monitoring system that uses ce
 7. JSON – Configuration, user data, logs, and application state storage
 8. Pytest – Automated testing
 
+# High-Level Architecture:
+
 
                                           User
                                             |
@@ -76,38 +78,8 @@ TrustVault is a PKI-based real-time cryptographic monitoring system that uses ce
                      | Certificates | Keys | Users | Logs | Config |
                      | Audit Records | Monitoring History           |
                      +----------------------------------------------+
-# High-Level Architecture:
-                           User
-                             │
-              ┌──────────────┴──────────────┐
-              │                             │
-              ▼                             ▼
-        GUI (Tkinter)                 CLI Interface
-              │                             │
-              └──────────────┬──────────────┘
-                             │
-                             ▼
-                    TrustVault Application
-                             │
-        ┌────────────────────┼────────────────────┐
-        │                    │                    │
-        ▼                    ▼                    ▼
-  PKI & Security       Monitoring Engine     Dashboard & Alerts
-        │                    │                    │
-        ├─ Root CA           ├─ File Monitoring   ├─ Web Dashboard
-        ├─ Certificate Mgmt  ├─ SHA-256 Checks    ├─ Email Alerts
-        ├─ PKCS#12 Keys      ├─ Ransomware Detect └─ Audit Logging
-        ├─ Authentication    └─ Anomaly Detection
-        ├─ Digital Signatures
-        ├─ Encryption/Decryption
-        └─ Replay Protection
-                             │
-                             ▼
-                     Data & Log Storage
-             (Certificates, Keys, Users, Logs,
-              Configuration, Audit Records)
-
-
+   
+                          
 # TrustVault Structure:
 TrustVault Application/
 ├── .github/
