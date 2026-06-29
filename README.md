@@ -30,9 +30,8 @@ TrustVault is a PKI-based real-time cryptographic monitoring system that uses ce
 7. JSON – Configuration, user data, logs, and application state storage
 8. Pytest – Automated testing
 
+
 # High-Level Architecture:
-
-
                                           User
                                             |
                       +---------------------+----------------------+
