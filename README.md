@@ -31,6 +31,51 @@ TrustVault is a PKI-based real-time cryptographic monitoring system that uses ce
 8. Pytest – Automated testing
 
 
+                                          User
+                                            |
+                      +---------------------+----------------------+
+                      |                                            |
+                      v                                            v
+              GUI (Tkinter)                                CLI Interface
+                      \                                            /
+                       \                                          /
+                        +----------------+------------------------+
+                                         |
+                                         v
+                           +------------------------------+
+                           |    TrustVault Application    |
+                           +--------------+---------------+
+                                          |
+      +-------------------+---------------+-------------------+------------------+
+      |                   |                                   |                  |
+      v                   v                                   v                  v
++--------------+   +--------------------+          +----------------+   +----------------+
+| Authentication|  | PKI & Crypto Engine|          | Monitoring     |   | Alert System   |
++--------------+   +--------------------+          +----------------+   +----------------+
+| Login        |   | Root CA            |          | File Monitor   |   | Email Alerts   |
+| User Mgmt    |   | Certificates       |          | SHA-256 Check  |   | Discord Alerts |
+| Access Ctrl  |   | PKCS#12 Keys       |          | Ransomware     |   | Notifications  |
+| Session Mgmt |   | Encryption         |          | Anomaly Detect |   | Logging        |
+|              |   | Digital Signature  |          | Replay Protect |   |                |
++--------------+   +--------------------+          +----------------+   +----------------+
+                                          |
+                                          v
+                              +--------------------------+
+                              |     Web Dashboard        |
+                              +--------------------------+
+                              | Live Monitoring          |
+                              | Audit Logs              |
+                              | Security Reports        |
+                              | User Management         |
+                              +--------------------------+
+                                          |
+                                          v
+                     +----------------------------------------------+
+                     |             Data Storage Layer               |
+                     +----------------------------------------------+
+                     | Certificates | Keys | Users | Logs | Config |
+                     | Audit Records | Monitoring History           |
+                     +----------------------------------------------+
 # High-Level Architecture:
                            User
                              │
