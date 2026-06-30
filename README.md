@@ -32,85 +32,11 @@ TrustVault is a PKI-based real-time cryptographic monitoring system that uses ce
 
 
 # High-Level Architecture:
-                                          User
-                                            |
-                      +---------------------+----------------------+
-                      |                                            |
-                      v                                            v
-              GUI (Tkinter)                                CLI Interface
-                      \                                            /
-                       \                                          /
-                        +----------------+------------------------+
-                                         |
-                                         v
-                           +------------------------------+
-                           |    TrustVault Application    |
-                           +--------------+---------------+
-                                          |
-      +-------------------+---------------+-------------------+------------------+
-      |                   |                                   |                  |
-      v                   v                                   v                  v
-+--------------+   +--------------------+          +----------------+   +----------------+
-| Authentication|  | PKI & Crypto Engine|          | Monitoring     |   | Alert System   |
-+--------------+   +--------------------+          +----------------+   +----------------+
-| Login        |   | Root CA            |          | File Monitor   |   | Email Alerts   |
-| User Mgmt    |   | Certificates       |          | SHA-256 Check  |   | Discord Alerts |
-| Access Ctrl  |   | PKCS#12 Keys       |          | Ransomware     |   | Notifications  |
-| Session Mgmt |   | Encryption         |          | Anomaly Detect |   | Logging        |
-|              |   | Digital Signature  |          | Replay Protect |   |                |
-+--------------+   +--------------------+          +----------------+   +----------------+
-                                          |
-                                          v
-                              +--------------------------+
-                              |     Web Dashboard        |
-                              +--------------------------+
-                              | Live Monitoring          |
-                              | Audit Logs              |
-                              | Security Reports        |
-                              | User Management         |
-                              +--------------------------+
-                                          |
-                                          v
-                     +----------------------------------------------+
-                     |             Data Storage Layer               |
-                     +----------------------------------------------+
-                     | Certificates | Keys | Users | Logs | Config |
-                     | Audit Records | Monitoring History           |
-                     +----------------------------------------------+
-   
+<img width="1536" height="1024" alt="SYSTEM ARCHITECTURE" src="https://github.com/user-attachments/assets/22b346a4-b882-4071-96d6-9a6ed4ca5688" />
+
                           
 # TrustVault Structure:
-TrustVault Application/
-├── .github/
-├── alerts/
-├── backups/
-├── certs/
-├── communication/
-├── config/
-├── CSV_logs/
-├── data/
-├── gui/
-├── keys/
-├── logs/
-├── monitoring/
-├── security/
-├── tests/
-├── utils/
-├── .dockerignore
-├── CONTRIBUTING.md
-├── data_setup.py
-├── docker-compose.yml
-├── Dockerfile
-├── file_monitor.log
-├── install_dependencies.py
-├── LICENSE
-├── main.py
-├── README.md
-├── requirements.jl
-├── run.py
-├── securefim_cli.py
-├── test_monitor_debug.py
-└── update_license.py
+<img width="1024" height="1536" alt="DIRECTORY TREE DIAGRAM" src="https://github.com/user-attachments/assets/8bf37d0d-ca37-4c0d-b367-f50804c3ceea" />
 
 
 # Login Details:
@@ -127,10 +53,10 @@ TrustVault Application/
 - PKCS#12 Keystore: C:\Users\omanr\Downloads\TrustVault Application\keys\omanryne.p12
 
 
-
 # Email alert System:
 - Email: omanrynee@gmail.com
 - Gmail App Password: xcdp stmm muqv zwcg
+
 
 # Running the Application:
 Start the desktop application:
